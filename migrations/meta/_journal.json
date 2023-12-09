@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1702106926064,
+      "tag": "0000_warm_toxin",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1702107999433,
+      "tag": "0001_cute_human_cannonball",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1702140028484,
+      "tag": "0002_bitter_warlock",
+      "breakpoints": true
+    }
+  ]
+}
