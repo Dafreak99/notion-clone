@@ -20,7 +20,7 @@ import { Button } from '../ui/button'
 
 const routes = [
   { title: 'Features', href: '#features' },
-  { title: 'Reasources', href: '#resources' },
+  { title: 'Resources', href: '#resources' },
   { title: 'Pricing', href: '#pricing' },
   { title: 'Testimonials', href: '#testimonial' },
 ]
@@ -65,6 +65,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 const Header = () => {
   const [path, setPath] = useState('#products')
+
   return (
     <header
       className='p-4
@@ -118,8 +119,8 @@ const Header = () => {
                   justify-end
                   rounded-md
                   bg-gradient-to-b
-                  from-muted/50
-                  to-muted
+                  from-cyan-500
+                  to-blue-500
                   p-6 no-underline
                   outline-none
                   focus:shadow-md
@@ -208,12 +209,12 @@ const Header = () => {
       '
       >
         <Link href={'/login'}>
-          <Button variant='btn-secondary' className=' p-1 hidden sm:block'>
+          <Button variant='ghost' className='p-1 px-2 hidden sm:block'>
             Login
           </Button>
         </Link>
         <Link href='/signup'>
-          <Button variant='btn-primary' className='whitespace-nowrap'>
+          <Button variant='default' className='whitespace-nowrap text-white'>
             Sign Up
           </Button>
         </Link>
