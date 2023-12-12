@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import * as z from 'zod'
 
@@ -38,9 +38,7 @@ const LoginPage = () => {
 
   const isLoading = form.formState.isSubmitting
 
-  // 2. Define a submit handler.
   const onSubmit = async (formData: z.infer<typeof FormSchema>) => {
-    // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log('formData', formData)
     const { error } = await actionLoginUser(formData)
@@ -54,79 +52,81 @@ const LoginPage = () => {
   }
 
   return (
-    <Form {...form}>
-      <form
-        onChange={() => {
-          if (submitError) setSubmitError('')
-        }}
-        onSubmit={form.handleSubmit(onSubmit)}
-        className='w-full sm:justify-center sm:w-[400px] space-y-6 flex flex-col'
-      >
-        <Link
-          href='/'
-          className='
+    <div className='h-screen w-screen flex justify-center items-center'>
+      <Form {...form}>
+        <form
+          onChange={() => {
+            if (submitError) setSubmitError('')
+          }}
+          onSubmit={form.handleSubmit(onSubmit)}
+          className='w-full sm:justify-center sm:w-[400px] space-y-6 flex flex-col'
+        >
+          <Link
+            href='/'
+            className='
           w-full
           flex
           justify-left
           items-center'
-        >
-          <Image src={Logo} alt='cypress Logo' width={50} height={50} />
-          <span
-            className='font-semibold
-          dark:text-white text-4xl first-letter:ml-2'
           >
-            cypress.
-          </span>
-        </Link>
-        <FormDescription
-          className='
-        text-foreground/60'
-        >
-          An all-In-One Collaboration and Productivity Platform
-        </FormDescription>
-        <FormField
-          disabled={isLoading}
-          control={form.control}
-          name='email'
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input type='email' placeholder='Email' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          disabled={isLoading}
-          control={form.control}
-          name='password'
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input type='password' placeholder='Password' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        {submitError && <FormMessage>{submitError}</FormMessage>}
-        <Button
-          type='submit'
-          className='w-full p-6'
-          size='lg'
-          disabled={isLoading}
-        >
-          {!isLoading ? 'Login' : <Loader />}
-        </Button>
-        <span className='self-container'>
-          Dont have an account?{' '}
-          <Link href='/signup' className='text-primary'>
-            Sign Up
+            <Image src={Logo} alt='cypress Logo' width={50} height={50} />
+            <span
+              className='font-semibold
+          dark:text-white text-4xl first-letter:ml-2'
+            >
+              cypress.
+            </span>
           </Link>
-        </span>
-      </form>
-    </Form>
+          <FormDescription
+            className='
+        text-foreground/60'
+          >
+            An all-In-One Collaboration and Productivity Platform
+          </FormDescription>
+          <FormField
+            disabled={isLoading}
+            control={form.control}
+            name='email'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type='email' placeholder='Email' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            disabled={isLoading}
+            control={form.control}
+            name='password'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type='password' placeholder='Password' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {submitError && <FormMessage>{submitError}</FormMessage>}
+          <Button
+            type='submit'
+            className='w-full p-6 text-white'
+            size='lg'
+            disabled={isLoading}
+          >
+            {!isLoading ? 'Login' : <Loader />}
+          </Button>
+          <span className='self-container'>
+            Dont have an account?{' '}
+            <Link href='/signup' className='text-primary'>
+              Sign Up
+            </Link>
+          </span>
+        </form>
+      </Form>
+    </div>
   )
 }
 
